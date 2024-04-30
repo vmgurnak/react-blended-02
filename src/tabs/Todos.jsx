@@ -12,11 +12,14 @@ export const Todos = () => {
     setTodos(prev => [...prev, newTodo]);
   };
 
+  const handleDelete = contactId => {
+    setTodos(prev => prev.filter(todo => todo.id !== contactId));
+  };
+
   return (
     <>
       <Form onSubmit={handleSubmit} />
-      <TodoList todos={todos} />
-      <Text textAlign="center">There are no any todos ...</Text>
+      <TodoList todos={todos} onDelete={handleDelete} />
     </>
   );
 };
