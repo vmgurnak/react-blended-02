@@ -16,10 +16,16 @@ export const Todos = () => {
     setTodos(prev => prev.filter(todo => todo.id !== contactId));
   };
 
+  const handleEdit = (id, text) => {
+    setTodos(prev =>
+      prev.map(todo => (todo.id === id ? { ...todo, text } : todo)),
+    );
+  };
+
   return (
     <>
       <Form onSubmit={handleSubmit} />
-      <TodoList todos={todos} onDelete={handleDelete} />
+      <TodoList todos={todos} onDelete={handleDelete} onEdit={handleEdit} />
     </>
   );
 };
