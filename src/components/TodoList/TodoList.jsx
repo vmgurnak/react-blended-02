@@ -1,6 +1,6 @@
 import { Grid, GridItem, TodoListItem } from '..';
 
-export const TodoList = ({ todos, onDelete, onEdit, openEditForm }) => {
+export const TodoList = ({ todos, onDelete, onCurrent, openEditForm }) => {
   return (
     <Grid>
       {todos.map(({ id, text }, index) => (
@@ -9,7 +9,7 @@ export const TodoList = ({ todos, onDelete, onEdit, openEditForm }) => {
             text={text}
             index={index}
             onDelete={() => onDelete(id)}
-            onEdit={() => onEdit({ id, text })}
+            onCurrent={() => onCurrent(id, text)}
             openEditForm={openEditForm}
           />
         </GridItem>

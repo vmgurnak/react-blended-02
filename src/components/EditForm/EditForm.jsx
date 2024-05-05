@@ -4,9 +4,13 @@ import { useState } from 'react';
 
 import style from './EditForm.module.css';
 
-export const EditForm = ({ currentTodo, onEdit, onClose }) => {
-  const defaultValue = currentTodo.text;
-  const [text, setText] = useState(defaultValue);
+export const EditForm = ({
+  currentTodo,
+  setCurrentTodo,
+  onEdit,
+  closeEditForm,
+}) => {
+  const [text, setText] = useState('');
 
   const handleChange = e => {
     setText(e.target.value);
@@ -15,7 +19,10 @@ export const EditForm = ({ currentTodo, onEdit, onClose }) => {
   const handleSubmit = e => {
     e.preventDefault();
     onEdit({ ...currentTodo, text });
-    onClose();
+    closeEditForm();
+    setCurrentTodo(null);
+    // setText('');
+    e.target.reset();
   };
   return (
     <form className={style.form} onSubmit={handleSubmit}>
@@ -23,7 +30,14 @@ export const EditForm = ({ currentTodo, onEdit, onClose }) => {
         <RiSaveLine color="green" size="16px" />
       </button>
 
-      <button onClick={onClose} className={style.editButton} type="button">
+      <button
+        onClick={() => {
+          closeEditForm();
+          setCurrentTodo(null);
+        }}
+        className={style.editButton}
+        type="button"
+      >
         <MdOutlineCancel color="red" size="16px" />
       </button>
 

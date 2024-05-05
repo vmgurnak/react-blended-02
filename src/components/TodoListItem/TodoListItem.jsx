@@ -7,7 +7,7 @@ export const TodoListItem = ({
   text,
   index,
   onDelete,
-  onEdit,
+  onCurrent,
   openEditForm,
 }) => {
   return (
@@ -22,8 +22,8 @@ export const TodoListItem = ({
 
       <button
         onClick={() => {
-          onEdit();
           openEditForm();
+          onCurrent();
         }}
         className={style.editButton}
         type="button"
